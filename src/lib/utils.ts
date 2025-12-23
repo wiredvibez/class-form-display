@@ -1,4 +1,4 @@
-import { EvaluationResponse, ResultsData, CRITERIA_CONFIG } from './types';
+import { EvaluationResponse, ResultsData, CRITERIA_CONFIG, EvaluationFormData } from './types';
 
 export function generateSessionId(): string {
   return Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -69,7 +69,7 @@ export function formatTime(seconds: number): string {
   return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 }
 
-export function hasAnyValue(data: Record<string, number | null>): boolean {
+export function hasAnyValue(data: EvaluationFormData): boolean {
   return Object.values(data).some(v => v !== null);
 }
 
