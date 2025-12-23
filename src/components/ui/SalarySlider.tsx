@@ -18,8 +18,8 @@ export function SalarySlider({ value, onChange, label, question }: SalarySliderP
   return (
     <div className="space-y-4">
       <div className="space-y-1">
-        <h3 className="font-mono font-bold text-lg">{label}</h3>
-        <p className="font-mono text-sm text-gray-700">{question}</p>
+        <h3 className="font-bold text-lg">{label}</h3>
+        <p className="text-sm text-gray-700">{question}</p>
       </div>
       
       <div className="relative" dir="ltr">
@@ -62,12 +62,12 @@ export function SalarySlider({ value, onChange, label, question }: SalarySliderP
       </div>
       
       <div className="text-center">
-        <span className="font-mono font-bold text-2xl bg-black text-[#FF00FF] px-4 py-2 border-4 border-[#FF00FF]">
+        <span className="font-bold text-2xl bg-black text-[#FF00FF] px-4 py-2 border-4 border-[#FF00FF]">
           {formatSalary(displayValue)}
         </span>
       </div>
       
-      <div className="flex justify-between font-mono text-xs text-gray-600" dir="ltr">
+      <div className="flex justify-between text-xs text-gray-600" dir="ltr">
         <span>{formatSalary(config.min)}</span>
         <span>{formatSalary(config.max)}</span>
       </div>

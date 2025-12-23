@@ -9,7 +9,7 @@ import { EvaluationForm } from '@/components/participant/EvaluationForm';
 import { ThankYouScreen } from '@/components/participant/ThankYouScreen';
 import { TimeUpScreen } from '@/components/participant/TimeUpScreen';
 import { BrutalistCard } from '@/components/ui/BrutalistCard';
-import { EvaluationFormData } from '@/lib/types';
+import { EvaluationFormData, getGenderedQuestion } from '@/lib/types';
 import { hasAnyValue } from '@/lib/utils';
 
 type ParticipantPhase = 'loading' | 'joining' | 'waiting' | 'form' | 'submitted' | 'timeup';
@@ -96,8 +96,8 @@ export default function FormPage() {
       <div className="min-h-screen flex items-center justify-center p-4">
         <BrutalistCard className="text-center space-y-4">
           <div className="text-4xl">❌</div>
-          <h1 className="font-mono font-bold text-xl">שגיאה</h1>
-          <p className="font-mono text-gray-600">
+          <h1 className="font-bold text-xl">שגיאה</h1>
+          <p className="text-gray-600">
             לא נמצא סשן עם הקוד הזה.
             <br />
             אנא סרקו שוב את קוד ה-QR.
@@ -228,9 +228,11 @@ function EvaluationFormTracked({
     <form onSubmit={handleSubmit} className="space-y-6 pb-8">
       {/* Header */}
       <div className="text-center space-y-2">
-        <h1 className="font-mono font-bold text-2xl">הערכת מועמד/ת לקידום</h1>
-        <p className="font-mono text-sm text-gray-600">
-          אנא קרא/י את הפרופיל והעריך/י לפי הקריטריונים
+        <h1 className="font-bold text-2xl">
+          {gender === 'male' ? 'הערכת מועמד לקידום' : 'הערכת מועמדת לקידום'}
+        </h1>
+        <p className="text-sm text-gray-600">
+          אנא קראו את הפרופיל והעריכו לפי הקריטריונים
         </p>
       </div>
 
@@ -239,7 +241,7 @@ function EvaluationFormTracked({
 
       {/* Evaluation Questions */}
       <BrutalistCard className="space-y-8">
-        <h2 className="font-mono font-bold text-xl border-b-4 border-black pb-2">
+        <h2 className="font-bold text-xl border-b-4 border-black pb-2">
           שאלות ההערכה
         </h2>
 
@@ -247,6 +249,7 @@ function EvaluationFormTracked({
         <SalarySliderInline
           value={formData.salary}
           onChange={(value) => updateField('salary', value)}
+          gender={gender}
         />
 
         <div className="border-t-2 border-dashed border-gray-400" />
@@ -256,7 +259,7 @@ function EvaluationFormTracked({
           value={formData.promotionPotential}
           onChange={(value) => updateField('promotionPotential', value)}
           label="פוטנציאל קידום"
-          question="כמה רחוק לדעתך יגיע/תגיע המנהל/ת בקריירה?"
+          question={getGenderedQuestion('promotionPotential', gender)}
         />
         <div className="border-t-2 border-dashed border-gray-400" />
 
@@ -264,7 +267,7 @@ function EvaluationFormTracked({
           value={formData.authority}
           onChange={(value) => updateField('authority', value)}
           label="סמכותיות"
-          question="באיזו מידה המנהל/ת נתפס/ת כבעל/ת סמכות?"
+          question={getGenderedQuestion('authority', gender)}
         />
         <div className="border-t-2 border-dashed border-gray-400" />
 
@@ -272,7 +275,7 @@ function EvaluationFormTracked({
           value={formData.managementFit}
           onChange={(value) => updateField('managementFit', value)}
           label="התאמה לניהול"
-          question="באיזו מידה המנהל/ת מתאים/ה לתפקיד ניהולי בכיר?"
+          question={getGenderedQuestion('managementFit', gender)}
         />
         <div className="border-t-2 border-dashed border-gray-400" />
 
@@ -280,7 +283,7 @@ function EvaluationFormTracked({
           value={formData.leadership}
           onChange={(value) => updateField('leadership', value)}
           label="יכולת הובלה"
-          question="באיזו מידה המנהל/ת מפגין/ה יכולת הובלה?"
+          question={getGenderedQuestion('leadership', gender)}
         />
         <div className="border-t-2 border-dashed border-gray-400" />
 
@@ -288,7 +291,7 @@ function EvaluationFormTracked({
           value={formData.commitment}
           onChange={(value) => updateField('commitment', value)}
           label="מחויבות לארגון"
-          question="באיזו מידה המנהל/ת נתפס/ת כמחויב/ת לארגון?"
+          question={getGenderedQuestion('commitment', gender)}
         />
         <div className="border-t-2 border-dashed border-gray-400" />
 
@@ -296,7 +299,7 @@ function EvaluationFormTracked({
           value={formData.overallEvaluation}
           onChange={(value) => updateField('overallEvaluation', value)}
           label="הערכה כללית"
-          question="מהי רמת ההערכה הכללית שלך כלפי המנהל/ת?"
+          question={getGenderedQuestion('overallEvaluation', gender)}
         />
       </BrutalistCard>
 
@@ -305,7 +308,7 @@ function EvaluationFormTracked({
         type="submit"
         disabled={disabled}
         className={`
-          w-full font-mono font-bold uppercase tracking-wider
+          w-full font-bold uppercase tracking-wider
           border-4 border-black px-8 py-4 text-lg
           bg-black text-stone-100
           shadow-[6px_6px_0px_#FF00FF]
@@ -332,11 +335,11 @@ function ProfileCardInline({ gender }: { gender: CandidateGender }) {
       gender === 'female' ? 'shadow-[8px_8px_0px_#FF00FF]' : 'shadow-[8px_8px_0px_#00FFFF]'
     }`}>
       <div className="border-b-4 border-black pb-4">
-        <h2 className="font-mono font-bold text-2xl">{profile.name}</h2>
-        <p className="font-mono text-lg text-gray-700">{profile.title}</p>
+        <h2 className="font-bold text-2xl">{profile.name}</h2>
+        <p className="text-lg text-gray-700">{profile.title}</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-3 font-mono text-sm">
+      <div className="grid grid-cols-2 gap-3 text-sm">
         <div className="space-y-1">
           <span className="font-bold block">ותק בחברה:</span>
           <span>{profile.experience}</span>
@@ -356,11 +359,11 @@ function ProfileCardInline({ gender }: { gender: CandidateGender }) {
       </div>
 
       <div className="space-y-2">
-        <h3 className="font-mono font-bold border-b-2 border-black pb-1">הישגים:</h3>
-        <ul className="font-mono text-sm space-y-1">
+        <h3 className="font-bold border-b-2 border-black pb-1">הישגים:</h3>
+        <ul className="text-sm space-y-1">
           {profile.achievements.map((achievement, index) => (
             <li key={index} className="flex gap-2">
-              <span className="text-[#00FFFF]">▪</span>
+              <span className="text-[#0066FF]">▪</span>
               <span>{achievement}</span>
             </li>
           ))}
@@ -368,17 +371,24 @@ function ProfileCardInline({ gender }: { gender: CandidateGender }) {
       </div>
 
       <div className="bg-stone-200 border-2 border-black p-3 space-y-1">
-        <p className="font-mono text-sm">
+        <p className="text-sm">
           <span className="font-bold">👨‍👩‍👧‍👦 </span>
           {profile.familyInfo}
         </p>
-        <p className="font-mono text-sm text-gray-700">
+        <p className="text-sm text-gray-700">
           {profile.familyNote}
         </p>
       </div>
 
+      <div className="bg-amber-100 border-2 border-amber-600 p-3 space-y-1">
+        <p className="text-sm">
+          <span className="font-bold">⚠️ הערה: </span>
+          {profile.behaviorNote}
+        </p>
+      </div>
+
       <div className="border-t-4 border-black pt-4">
-        <p className="font-mono text-sm italic">
+        <p className="text-sm italic">
           &ldquo;{profile.recommendation}&rdquo;
         </p>
       </div>
@@ -388,10 +398,12 @@ function ProfileCardInline({ gender }: { gender: CandidateGender }) {
 
 function SalarySliderInline({ 
   value, 
-  onChange 
+  onChange,
+  gender,
 }: { 
   value: number | null; 
   onChange: (value: number) => void;
+  gender: 'male' | 'female';
 }) {
   const min = 14000;
   const max = 18000;
@@ -400,9 +412,9 @@ function SalarySliderInline({
   return (
     <div className="space-y-4">
       <div className="space-y-1">
-        <h3 className="font-mono font-bold text-lg">שכר ראוי</h3>
-        <p className="font-mono text-sm text-gray-700">
-          המנהל/ת מקבל/ת כרגע 14,000₪. לאיזה שכר לדעתך ראוי/ה?
+        <h3 className="font-bold text-lg">שכר ראוי</h3>
+        <p className="text-sm text-gray-700">
+          {getGenderedQuestion('salary', gender)}
         </p>
       </div>
       
@@ -444,12 +456,12 @@ function SalarySliderInline({
       </div>
       
       <div className="text-center">
-        <span className="font-mono font-bold text-2xl bg-black text-[#FF00FF] px-4 py-2 border-4 border-[#FF00FF]">
+        <span className="font-bold text-2xl bg-black text-[#FF00FF] px-4 py-2 border-4 border-[#FF00FF]">
           ₪{displayValue.toLocaleString('he-IL')}
         </span>
       </div>
       
-      <div className="flex justify-between font-mono text-xs text-gray-600" dir="ltr">
+      <div className="flex justify-between text-xs text-gray-600" dir="ltr">
         <span>₪{min.toLocaleString('he-IL')}</span>
         <span>₪{max.toLocaleString('he-IL')}</span>
       </div>
@@ -471,8 +483,8 @@ function RatingScaleInline({
   return (
     <div className="space-y-4">
       <div className="space-y-1">
-        <h3 className="font-mono font-bold text-lg">{label}</h3>
-        <p className="font-mono text-sm text-gray-700">{question}</p>
+        <h3 className="font-bold text-lg">{label}</h3>
+        <p className="text-sm text-gray-700">{question}</p>
       </div>
       
       <div className="flex justify-between gap-2">
@@ -484,7 +496,7 @@ function RatingScaleInline({
             className={`
               flex-1 aspect-square max-w-16
               border-4 border-black
-              font-mono font-bold text-xl
+font-bold text-xl
               transition-all duration-100
               ${value === rating
                 ? 'bg-black text-stone-100 shadow-none translate-x-1 translate-y-1'
@@ -497,7 +509,7 @@ function RatingScaleInline({
         ))}
       </div>
       
-      <div className="flex justify-between font-mono text-xs text-gray-600">
+      <div className="flex justify-between text-xs text-gray-600">
         <span>{RATING_LABELS[1]}</span>
         <span>{RATING_LABELS[5]}</span>
       </div>

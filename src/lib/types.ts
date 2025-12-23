@@ -89,7 +89,8 @@ export const CRITERIA_CONFIG = [
     type: 'salary' as const,
     min: 14000,
     max: 18000,
-    question: 'המנהל/ת מקבל/ת כרגע 14,000₪. לאיזה שכר לדעתך ראוי/ה?',
+    questionMale: 'המנהל מקבל כרגע 14,000₪. לאיזה שכר לדעתך ראוי?',
+    questionFemale: 'המנהלת מקבלת כרגע 14,000₪. לאיזה שכר לדעתך ראויה?',
   },
   {
     key: 'promotionPotential',
@@ -97,7 +98,8 @@ export const CRITERIA_CONFIG = [
     type: 'rating' as const,
     min: 1,
     max: 5,
-    question: 'כמה רחוק לדעתך יגיע/תגיע המנהל/ת בקריירה?',
+    questionMale: 'כמה רחוק לדעתך יגיע המנהל בקריירה?',
+    questionFemale: 'כמה רחוק לדעתך תגיע המנהלת בקריירה?',
   },
   {
     key: 'authority',
@@ -105,7 +107,8 @@ export const CRITERIA_CONFIG = [
     type: 'rating' as const,
     min: 1,
     max: 5,
-    question: 'באיזו מידה המנהל/ת נתפס/ת כבעל/ת סמכות?',
+    questionMale: 'באיזו מידה המנהל נתפס כבעל סמכות?',
+    questionFemale: 'באיזו מידה המנהלת נתפסת כבעלת סמכות?',
   },
   {
     key: 'managementFit',
@@ -113,7 +116,8 @@ export const CRITERIA_CONFIG = [
     type: 'rating' as const,
     min: 1,
     max: 5,
-    question: 'באיזו מידה המנהל/ת מתאים/ה לתפקיד ניהולי בכיר?',
+    questionMale: 'באיזו מידה המנהל מתאים לתפקיד ניהולי בכיר?',
+    questionFemale: 'באיזו מידה המנהלת מתאימה לתפקיד ניהולי בכיר?',
   },
   {
     key: 'leadership',
@@ -121,7 +125,8 @@ export const CRITERIA_CONFIG = [
     type: 'rating' as const,
     min: 1,
     max: 5,
-    question: 'באיזו מידה המנהל/ת מפגין/ה יכולת הובלה?',
+    questionMale: 'באיזו מידה המנהל מפגין יכולת הובלה?',
+    questionFemale: 'באיזו מידה המנהלת מפגינה יכולת הובלה?',
   },
   {
     key: 'commitment',
@@ -129,7 +134,8 @@ export const CRITERIA_CONFIG = [
     type: 'rating' as const,
     min: 1,
     max: 5,
-    question: 'באיזו מידה המנהל/ת נתפס/ת כמחויב/ת לארגון?',
+    questionMale: 'באיזו מידה המנהל נתפס כמחויב לארגון?',
+    questionFemale: 'באיזו מידה המנהלת נתפסת כמחויבת לארגון?',
   },
   {
     key: 'overallEvaluation',
@@ -137,9 +143,17 @@ export const CRITERIA_CONFIG = [
     type: 'rating' as const,
     min: 1,
     max: 5,
-    question: 'מהי רמת ההערכה הכללית שלך כלפי המנהל/ת?',
+    questionMale: 'מהי רמת ההערכה הכללית שלך כלפי המנהל?',
+    questionFemale: 'מהי רמת ההערכה הכללית שלך כלפי המנהלת?',
   },
 ] as const;
+
+// Helper function to get the gender-specific question
+export function getGenderedQuestion(criteriaKey: string, gender: CandidateGender): string {
+  const criteria = CRITERIA_CONFIG.find(c => c.key === criteriaKey);
+  if (!criteria) return '';
+  return gender === 'male' ? criteria.questionMale : criteria.questionFemale;
+}
 
 export const RATING_LABELS: Record<number, string> = {
   1: 'נמוך מאוד',
@@ -165,6 +179,7 @@ export const CANDIDATE_PROFILES = {
     ],
     familyInfo: 'אב ל-3 ילדים',
     familyNote: 'יוצא פעם בשבוע מוקדם יותר לאסוף את הילדים מהגן',
+    behaviorNote: 'עובד דיווח שבזמן ישיבה, כאשר לא הסכים עם המנהל בנושא מסוים, המנהל הרים את הקול והיה תקיף למדי.',
     recommendation: 'ממליצים מדווחים על יכולת ארגון גבוהה, תקשורת מצוינת עם לקוחות, ונכונות לקחת אחריות על משימות מאתגרות.',
   },
   female: {
@@ -182,6 +197,7 @@ export const CANDIDATE_PROFILES = {
     ],
     familyInfo: 'אם ל-3 ילדים',
     familyNote: 'יוצאת פעם בשבוע מוקדם יותר לאסוף את הילדים מהגן',
+    behaviorNote: 'עובד דיווח שבזמן ישיבה, כאשר לא הסכים עם המנהלת בנושא מסוים, המנהלת הרימה את הקול והייתה תקיפה למדי.',
     recommendation: 'ממליצים מדווחים על יכולת ארגון גבוהה, תקשורת מצוינת עם לקוחות, ונכונות לקחת אחריות על משימות מאתגרות.',
   },
 };

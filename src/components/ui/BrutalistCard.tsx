@@ -18,7 +18,7 @@ export function BrutalistCard({
   const variantStyles = {
     default: 'bg-stone-100 shadow-[8px_8px_0px_#000]',
     female: 'bg-stone-100 shadow-[8px_8px_0px_#FF00FF]',
-    male: 'bg-stone-100 shadow-[8px_8px_0px_#00FFFF]',
+    male: 'bg-stone-100 shadow-[8px_8px_0px_#0066FF]',
   };
 
   return (

@@ -10,11 +10,11 @@ interface ResultBarProps {
 }
 
 export function ResultBar({ label, percentage, displayValue, variant }: ResultBarProps) {
-  const accentColor = variant === 'female' ? '#FF00FF' : '#00FFFF';
+  const accentColor = variant === 'female' ? '#FF00FF' : '#0066FF';
   
   return (
     <div className="space-y-2">
-      <div className="flex justify-between items-center font-mono">
+      <div className="flex justify-between items-center">
         <span className="font-bold">{label}</span>
         <span className="text-lg font-bold" style={{ color: accentColor }}>
           {displayValue}

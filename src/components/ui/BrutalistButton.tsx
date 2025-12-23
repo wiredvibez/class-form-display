@@ -24,7 +24,7 @@ export function BrutalistButton({
   className = '',
 }: BrutalistButtonProps) {
   const baseStyles = `
-    font-mono font-bold uppercase tracking-wider
+font-bold uppercase tracking-wider
     border-4 border-black
     transition-all duration-100 ease-out
     cursor-pointer
@@ -40,8 +40,8 @@ export function BrutalistButton({
     `,
     secondary: `
       bg-stone-100 text-black
-      shadow-[6px_6px_0px_#00FFFF]
-      hover:shadow-[3px_3px_0px_#00FFFF] hover:translate-x-[3px] hover:translate-y-[3px]
+      shadow-[6px_6px_0px_#0066FF]
+      hover:shadow-[3px_3px_0px_#0066FF] hover:translate-x-[3px] hover:translate-y-[3px]
       active:shadow-none active:translate-x-[6px] active:translate-y-[6px]
     `,
     accent: `

@@ -14,8 +14,8 @@ export function RatingScale({ value, onChange, label, question }: RatingScalePro
   return (
     <div className="space-y-4">
       <div className="space-y-1">
-        <h3 className="font-mono font-bold text-lg">{label}</h3>
-        <p className="font-mono text-sm text-gray-700">{question}</p>
+        <h3 className="font-bold text-lg">{label}</h3>
+        <p className="text-sm text-gray-700">{question}</p>
       </div>
       
       <div className="flex justify-between gap-2">
@@ -27,7 +27,7 @@ export function RatingScale({ value, onChange, label, question }: RatingScalePro
             className={`
               flex-1 aspect-square max-w-16
               border-4 border-black
-              font-mono font-bold text-xl
+font-bold text-xl
               transition-all duration-100
               ${value === rating
                 ? 'bg-black text-stone-100 shadow-none translate-x-1 translate-y-1'
@@ -40,7 +40,7 @@ export function RatingScale({ value, onChange, label, question }: RatingScalePro
         ))}
       </div>
       
-      <div className="flex justify-between font-mono text-xs text-gray-600">
+      <div className="flex justify-between text-xs text-gray-600">
         <span>{RATING_LABELS[1]}</span>
         <span>{RATING_LABELS[5]}</span>
       </div>

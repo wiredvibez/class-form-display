@@ -40,7 +40,7 @@ export function CountdownTimer({ duration, onComplete, isActive }: CountdownTime
     <div className="space-y-6">
       <div 
         className={`
-          font-mono font-bold text-8xl text-center
+font-bold text-8xl text-center
           ${isLow ? 'text-red-500 animate-pulse' : 'text-black'}
         `}
       >
@@ -51,7 +51,7 @@ export function CountdownTimer({ duration, onComplete, isActive }: CountdownTime
         <div
           className={`
             absolute top-0 right-0 h-full transition-all duration-1000 ease-linear
-            ${isLow ? 'bg-red-500' : 'bg-[#00FFFF]'}
+            ${isLow ? 'bg-red-500' : 'bg-[#0066FF]'}
           `}
           style={{ width: `${percentage}%` }}
         />

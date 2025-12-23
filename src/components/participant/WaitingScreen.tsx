@@ -8,8 +8,8 @@ export function WaitingScreen() {
     <div className="min-h-screen flex items-center justify-center p-4">
       <BrutalistCard className="text-center space-y-6 max-w-md">
         <div className="text-6xl animate-pulse">⏳</div>
-        <h1 className="font-mono font-bold text-2xl">ממתינים להתחלה...</h1>
-        <p className="font-mono text-gray-600">
+        <h1 className="font-bold text-2xl">ממתינים להתחלה...</h1>
+        <p className="text-gray-600">
           ההערכה תתחיל בקרוב.
           <br />
           אנא המתן/י להוראות המנחה.

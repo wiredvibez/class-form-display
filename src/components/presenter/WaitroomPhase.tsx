@@ -19,7 +19,7 @@ export function WaitroomPhase({ sessionId, participantCount, onStart }: Waitroom
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-8 gap-8">
       <BrutalistCard className="text-center space-y-6 max-w-lg">
-        <h1 className="font-mono font-bold text-3xl border-b-4 border-black pb-4">
+        <h1 className="font-bold text-3xl border-b-4 border-black pb-4">
           סרקו את הקוד להצטרפות
         </h1>
         
@@ -27,7 +27,7 @@ export function WaitroomPhase({ sessionId, participantCount, onStart }: Waitroom
           {joinUrl && <QRDisplay url={joinUrl} size={280} />}
         </div>
 
-        <div className="font-mono text-sm text-gray-600 break-all">
+        <div className="text-sm text-gray-600 break-all">
           {joinUrl}
         </div>
       </BrutalistCard>

@@ -116,10 +116,10 @@ export default function PresenterPage() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-8 gap-8">
         <BrutalistCard className="text-center space-y-6 max-w-lg">
-          <h1 className="font-mono font-bold text-3xl border-b-4 border-black pb-4">
+          <h1 className="font-bold text-3xl border-b-4 border-black pb-4">
             מסך מציג
           </h1>
-          <p className="font-mono text-gray-700">
+          <p className="text-gray-700">
             צור סשן חדש להערכת עמיתים
           </p>
         </BrutalistCard>
@@ -147,7 +147,7 @@ export default function PresenterPage() {
         />
         <button
           onClick={handleNewSession}
-          className="absolute top-4 left-4 font-mono text-sm text-gray-500 hover:text-black underline"
+          className="absolute top-4 left-4 text-sm text-gray-500 hover:text-black underline"
         >
           סשן חדש
         </button>
@@ -196,7 +196,7 @@ export default function PresenterPage() {
         <ResultsPhase results={results} />
         <button
           onClick={handleNewSession}
-          className="fixed bottom-4 left-4 font-mono text-sm bg-black text-white px-4 py-2 border-4 border-[#FF00FF] hover:bg-[#FF00FF] hover:text-black transition-colors"
+          className="fixed bottom-4 left-4 text-sm bg-black text-white px-4 py-2 border-4 border-[#FF00FF] hover:bg-[#FF00FF] hover:text-black transition-colors"
         >
           סשן חדש
         </button>

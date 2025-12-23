@@ -44,22 +44,22 @@ export function ActivePhase({
       </BrutalistCard>
 
       <BrutalistCard className="text-center space-y-6 w-full max-w-2xl">
-        <h2 className="font-mono font-bold text-2xl">סטטוס הגשה</h2>
+        <h2 className="font-bold text-2xl">סטטוס הגשה</h2>
         
         <div className="font-mono">
-          <span className="text-5xl font-bold text-[#00FFFF]">{submittedCount}</span>
+          <span className="text-5xl font-bold text-[#0066FF]">{submittedCount}</span>
           <span className="text-3xl"> מתוך </span>
           <span className="text-5xl font-bold">{totalParticipants}</span>
         </div>
 
         <div className="h-8 bg-stone-200 border-4 border-black relative overflow-hidden">
           <div
-            className="absolute top-0 right-0 h-full bg-[#00FFFF] transition-all duration-500"
+            className="absolute top-0 right-0 h-full bg-[#0066FF] transition-all duration-500"
             style={{ width: `${percentage}%` }}
           />
         </div>
 
-        <p className="font-mono text-xl">{percentage}% הגישו</p>
+        <p className="text-xl">{percentage}% הגישו</p>
       </BrutalistCard>
 
       <BrutalistButton

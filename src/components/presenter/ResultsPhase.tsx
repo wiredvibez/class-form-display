@@ -37,7 +37,7 @@ export function ResultsPhase({ results }: ResultsPhaseProps) {
     <div className="min-h-screen p-4 md:p-8">
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="font-mono font-bold text-3xl md:text-4xl border-b-4 border-black pb-4 inline-block">
+        <h1 className="font-bold text-3xl md:text-4xl border-b-4 border-black pb-4 inline-block">
           ████ תוצאות הערכה ████
         </h1>
       </div>
@@ -48,8 +48,8 @@ export function ResultsPhase({ results }: ResultsPhaseProps) {
         <div className="border-4 border-black bg-stone-100 shadow-[8px_8px_0px_#FF00FF]">
           {/* Header */}
           <div className="bg-[#FF00FF] border-b-4 border-black p-4 text-center">
-            <h2 className="font-mono font-bold text-2xl md:text-3xl">👩 דנה כהן</h2>
-            <p className="font-mono text-lg">(n={results.female.count})</p>
+            <h2 className="font-bold text-2xl md:text-3xl">👩 דנה כהן</h2>
+            <p className="text-lg">(n={results.female.count})</p>
           </div>
           
           {/* Results */}
@@ -67,11 +67,11 @@ export function ResultsPhase({ results }: ResultsPhaseProps) {
         </div>
 
         {/* Male Side */}
-        <div className="border-4 border-black bg-stone-100 shadow-[8px_8px_0px_#00FFFF]">
+        <div className="border-4 border-black bg-stone-100 shadow-[8px_8px_0px_#0066FF]">
           {/* Header */}
-          <div className="bg-[#00FFFF] border-b-4 border-black p-4 text-center">
-            <h2 className="font-mono font-bold text-2xl md:text-3xl">👨 דני כהן</h2>
-            <p className="font-mono text-lg">(n={results.male.count})</p>
+          <div className="bg-[#0066FF] border-b-4 border-black p-4 text-center">
+            <h2 className="font-bold text-2xl md:text-3xl">👨 דני כהן</h2>
+            <p className="text-lg">(n={results.male.count})</p>
           </div>
           
           {/* Results */}
@@ -90,7 +90,7 @@ export function ResultsPhase({ results }: ResultsPhaseProps) {
       </div>
 
       {/* Footer */}
-      <div className="text-center mt-8 font-mono text-lg">
+      <div className="text-center mt-8 text-lg">
         <div className="inline-block bg-black text-stone-100 px-6 py-3 border-4 border-[#FF00FF]">
           סה״כ {results.female.count + results.male.count} תשובות
         </div>
