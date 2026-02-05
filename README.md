@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Overview
+
+This application is a live peer evaluation system that allows participants to evaluate candidates in real-time during classroom experiments or research studies. It uses Firebase Firestore for real-time data synchronization.
+
+**📚 For detailed information about how session data is stored, see [SESSION_STORAGE.md](./SESSION_STORAGE.md)**
+
 ## Getting Started
 
 First, run the development server:
