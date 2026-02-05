@@ -146,9 +146,9 @@ In addition to Firestore, the application uses browser-side storage for session 
 ## Configuration
 
 Firebase connection configured in `/src/lib/firebase.ts`:
-- Project ID: `university-projects-d331c`
-- Authentication: Public API key (client-side only)
-- Security: Should be configured via Firestore Security Rules
+- **Project ID**: `university-projects-d331c`
+- **API Key**: Included in client-side code (Firebase API keys are safe to expose)
+- **Security Model**: Firebase API keys are not secret; security is enforced through Firestore Security Rules server-side, not by hiding the API key
 
 ## Benefits of This Approach
 
@@ -160,7 +160,17 @@ Firebase connection configured in `/src/lib/firebase.ts`:
 
 ## Potential Considerations
 
-- **Security**: Ensure Firestore Security Rules are properly configured
-- **Costs**: Firebase pricing based on reads/writes/storage
-- **Data Retention**: Consider cleanup of old sessions
+- **Security**: 
+  - **Critical**: Firestore Security Rules must be properly configured to protect data
+  - The Firebase API key visible in client code is not a security risk by design
+  - Security is enforced server-side through Firestore Security Rules, which control:
+    - Who can read/write specific documents
+    - Data validation rules
+    - Rate limiting and abuse prevention
+  - Recommended rules should restrict:
+    - Session creation to prevent spam
+    - Participant limits per session
+    - Response editing after submission
+- **Costs**: Firebase pricing based on reads/writes/storage (consider query optimization)
+- **Data Retention**: Consider implementing automatic cleanup of old sessions
 - **Privacy**: Session data persists in cloud unless explicitly deleted
